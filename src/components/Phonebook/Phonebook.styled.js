@@ -2,10 +2,6 @@ import { Form, Field, ErrorMessage } from "formik";
 import styled from "styled-components";
 
 
-export const FormTitel = styled.h2`
-margin-bottom: 18px;
-`;
-
 export const StyledForm = styled(Form)`
 margin-bottom:36px;
 `;

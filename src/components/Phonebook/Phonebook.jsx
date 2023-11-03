@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { FormTitel, StyledForm, StyledInput, StyledLabel, StyledButton, Error } from './Phonebook.styled';
+import { StyledForm, StyledInput, StyledLabel, StyledButton, Error } from './Phonebook.styled';
 
 
 const schema = Yup.object().shape({
@@ -12,8 +12,6 @@ const schema = Yup.object().shape({
 export const Phonebook = ({onAddContact}) => { 
 
         return (
-        <section>
-            <FormTitel>Phonebook</FormTitel>
                 <Formik
                     initialValues={{
                         name: '',
@@ -21,7 +19,6 @@ export const Phonebook = ({onAddContact}) => {
                     }}
                     validationSchema={schema}
                     onSubmit={(values, actions) => {
-                        console.log(values);
                         onAddContact(values);
                         actions.resetForm();
                     }}
@@ -41,6 +38,5 @@ export const Phonebook = ({onAddContact}) => {
                     <StyledButton type="submit">Add contact</StyledButton>
                     </StyledForm>
                 </Formik>
-        </section>
     )
 };
