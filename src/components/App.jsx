@@ -4,7 +4,8 @@ import { nanoid } from 'nanoid';
 import { Phonebook } from "./Phonebook/Phonebook";
 import { Contacts } from "./Contacts/Contacts";
 import { Container, Title } from "./App.styled";
-import {Filter} from "./Filter/Filter"
+import { Filter } from "./Filter/Filter"
+import { Report } from 'notiflix/build/notiflix-report-aio';
 
 export class App extends Component {
 
@@ -20,12 +21,23 @@ state = {
 
   addContact = values => {
     const inputId = nanoid();
+    const { contacts} = this.state;
 
-    this.setState(prevState => {
+    const checkContact = contacts.some(contact => contact.name === values.name)
+    
+    if (checkContact) {
+      Report.warning(
+'Contact has not been added.',
+`${values.name} is already in contacts.`,
+'Okay',
+);
+    } else {
+ this.setState(prevState => {
       return {
         contacts: [...prevState.contacts, { ...values, id: inputId }]
   }
     })
+    }
   };
 
   updateFilter = value => {
@@ -33,7 +45,15 @@ state = {
     this.setState({
       filter: value,
     });
-}
+  }
+  
+  handleDelete = contactId => {
+    const newContacts = this.state.contacts.filter(contact => contact.id !== contactId);
+
+    this.setState({
+      contacts: newContacts,
+    })
+  }
 
   
   render() {
@@ -53,7 +73,7 @@ state = {
 
         <Title>Contacts</Title>
         <Filter onFilter={this.updateFilter}></Filter>
-        <Contacts myContacts={filtredContacts}></Contacts>
+        <Contacts myContacts={filtredContacts} onDelete={this.handleDelete}></Contacts>
       <GlobalStyle />
       </Container>
     );
