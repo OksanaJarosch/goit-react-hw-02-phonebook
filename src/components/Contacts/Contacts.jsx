@@ -1,16 +1,16 @@
-
+import { Titel, Contact } from "./Contacts.styled";
 
 export const Contacts = ({ myContacts }) => {
     
     return (
         <>
-            <h2>Contacts</h2>
+            <Titel>Contacts</Titel>
             <ul>
                 {myContacts.map(contact => {
                     return (
-                        <li key={contact.id}>
+                        <Contact key={contact.id}>
                             <p>{contact.name}</p>
-                        </li>
+                        </Contact>
                     )
                 })}
             </ul>
