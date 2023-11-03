@@ -17,7 +17,7 @@ state = {
 
     this.setState(prevState => {
       return {
-        contacts: [...prevState.contacts, {...values, id: inputId}]
+        contacts: [...prevState.contacts, { ...values, id: inputId }]
   }
     })
   };

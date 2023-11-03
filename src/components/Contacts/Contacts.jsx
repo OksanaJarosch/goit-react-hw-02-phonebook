@@ -9,7 +9,8 @@ export const Contacts = ({ myContacts }) => {
                 {myContacts.map(contact => {
                     return (
                         <Contact key={contact.id}>
-                            <p>{contact.name}</p>
+                            <span>{contact.name}: </span>
+                            <span>{contact.number}</span>
                         </Contact>
                     )
                 })}
