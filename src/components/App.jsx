@@ -23,8 +23,8 @@ state = {
     const inputId = nanoid();
     const { contacts} = this.state;
 
-    const checkContact = contacts.some(contact => contact.name === values.name)
-    
+    const checkContact = contacts.some(contact => contact.name.toLowerCase() === values.name.toLowerCase());
+
     if (checkContact) {
       Report.warning(
 'Contact has not been added.',
